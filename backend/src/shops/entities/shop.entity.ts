@@ -39,7 +39,7 @@ export class Shop {
     @JoinColumn()
     orders: Order[];
 
-    @OneToMany(() => Alert, alert => alert.shop,)
+    @OneToMany(() => Alert, alerts => alerts.shop,)
     @JoinColumn()
-    alert: Alert[];
+    alerts: Alert[];
 }

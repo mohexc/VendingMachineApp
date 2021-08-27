@@ -36,6 +36,24 @@ export class ShopsService {
     return shopInventory
   }
 
+  async findOneAndOrder(id: number) {
+    await this.findOne(id)
+    const shopOrders = await this.shopRepository.find({
+      where: { id },
+      relations: ["orders", "orders.order_items", "orders.order_items.product"]
+    })
+    return shopOrders
+  }
+
+  async findOneAndAlert(id: number) {
+    await this.findOne(id)
+    const shopAlerts = await this.shopRepository.find({
+      where: { id },
+      relations: ["alerts"]
+    })
+    return shopAlerts
+  }
+
   async update(id: number, updateShopDto: UpdateShopDto) {
     const shop = await this.findOne(id)
     return

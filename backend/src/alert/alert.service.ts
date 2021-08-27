@@ -27,7 +27,7 @@ export class AlertService {
   }
 
   async findAll() {
-    return await this.alertRepository.find()
+    return await this.alertRepository.find({ relations: ["shop"] })
   }
 
   async findOne(id: number) {

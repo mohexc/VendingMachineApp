@@ -1,5 +1,5 @@
 import { Shop } from "src/shops/entities/shop.entity";
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 
 @Entity()
@@ -20,6 +20,7 @@ export class Alert {
     @UpdateDateColumn()
     updated_at: Date;
 
-    @OneToMany(() => Shop, shop => shop.alert,)
+    @ManyToOne(() => Shop, shop => shop.alerts, { cascade: true })
+    @JoinColumn()
     shop: Shop
 }

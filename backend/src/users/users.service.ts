@@ -28,7 +28,15 @@ export class UsersService {
   async findOne(id: number) {
     const user = await this.usersRepository.findOne(id)
     if (!user) {
-      throw new NotFoundException()
+      throw new NotFoundException(`Shop with Id ${id} not found`)
+    }
+    const { password, ...rest } = user
+    return rest
+  }
+  async findOneByUsername(username: string) {
+    const user = await this.usersRepository.findOne({ where: { username } })
+    if (!user) {
+      throw new NotFoundException(`User with username ${username} not found`)
     }
     const { password, ...rest } = user
     return rest

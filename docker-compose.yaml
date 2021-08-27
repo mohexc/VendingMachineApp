@@ -29,19 +29,33 @@ services:
     depends_on:
       - postgres-services
 
-  # client-nextjs:
-  #   build:
-  #     context: ./client
-  #     dockerfile: dockerfile
-  #   ports:
-  #     - "3000:3000"
-  #   volumes:
-  #     - ./client:/app
-  #     - ./client/node_modules:/app/node_modules
-  #   depends_on:
-  #     - backend-nest
-  #   environment:
-  #     API_URL: backend-nest
+  client-backoffice:
+    build:
+      context: ./client
+      dockerfile: dockerfile
+    ports:
+      - "3002:3000"
+    volumes:
+      - ./client-backoffice:/app
+      - ./client-backoffice:/node_modules:/app/node_modules
+    depends_on:
+      - backend-nest
+    environment:
+      API_URL: backend-nest
+
+  client-machine:
+    build:
+      context: ./client
+      dockerfile: dockerfile
+    ports:
+      - "3003:3000"
+    volumes:
+      - ./client-machine:/app
+      - ./client-machine:/node_modules:/app/node_modules
+    depends_on:
+      - backend-nest
+    environment:
+      API_URL: backend-nest
 
 volumes:
   vending-machine:

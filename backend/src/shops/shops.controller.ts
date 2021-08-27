@@ -29,6 +29,16 @@ export class ShopsController {
     return this.shopsService.findOneAndInventories(+id);
   }
 
+  @Get(':id/orders')
+  findOneAndOrder(@Param('id') id: string) {
+    return this.shopsService.findOneAndOrder(+id);
+  }
+
+  @Get(':id/alerts')
+  findOneAndAlert(@Param('id') id: string) {
+    return this.shopsService.findOneAndAlert(+id);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateShopDto: UpdateShopDto) {
     return this.shopsService.update(+id, updateShopDto);
