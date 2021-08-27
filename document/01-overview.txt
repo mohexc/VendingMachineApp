@@ -1,0 +1,28 @@
+workflow
+    create shop
+    create product
+    create and assign inventory to shop
+
+    shop
+        login
+        get shop, and include inventory, product
+
+    cart -> order cut inventory
+
+    alert
+        {
+            shop: Shop
+            title: "inventory.qyt < 10",
+            description: "product",
+        }
+
+
+order : {
+    shopId: 1
+    orderItems: [
+        {
+            inventoryId: 1,
+            qyt:1
+        }
+    ]
+}

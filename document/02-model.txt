@@ -1,0 +1,41 @@
+User
+    username
+    password
+    role: admin | shop
+    shop : OneToOne
+
+Shop
+    name : string
+    image : string
+    address : string
+    isOpen: boolean
+    inventories : OneToMany
+    user : OneToOne
+    alert : OneToMany
+    order : OneToMany
+
+Inventories
+    shop : ManyToOne
+    product : ManyToOne
+    qyt: number
+
+Product
+    name : string
+    image : string
+    price : number
+    inventories : OneToMany
+
+Orders
+    orderItems : OneToMany
+    shop : ManyToOne
+    totalPrice
+
+OrderItem
+    order : ManyToOne
+    product : ManyToOne
+    qyt : number
+
+Alert
+    title
+    description
+    shop: ManyToOne
