@@ -43,7 +43,10 @@ export class OrdersService {
   }
 
   async findAll() {
-    return `This action returns all orders`;
+    return await this.orderRepository.find({
+      relations: ['shop', 'order_items', 'order_items.product'],
+      order: { created_at: "DESC" }
+    })
   }
 
   async findOne(id: number) {

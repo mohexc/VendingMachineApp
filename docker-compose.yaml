@@ -21,7 +21,7 @@ services:
       - 3001:3001
     volumes:
       - ./backend:/app
-      - ./backend/node_modules:/app/node_modules
+      - /app/node_modules
     environment:
       DATABASE_URL: "postgres://admin:banana@postgres-services:5432/vending-machine"
       NODE_ENV: development
@@ -30,32 +30,36 @@ services:
       - postgres-services
 
   client-backoffice:
+    stdin_open: true
+    tty: true
     build:
-      context: ./client
+      context: ./client-backoffice
       dockerfile: dockerfile
     ports:
       - "3002:3000"
     volumes:
+      - /app/node_modules
       - ./client-backoffice:/app
-      - ./client-backoffice:/node_modules:/app/node_modules
     depends_on:
       - backend-nest
     environment:
       API_URL: backend-nest
 
-  client-machine:
-    build:
-      context: ./client
-      dockerfile: dockerfile
-    ports:
-      - "3003:3000"
-    volumes:
-      - ./client-machine:/app
-      - ./client-machine:/node_modules:/app/node_modules
-    depends_on:
-      - backend-nest
-    environment:
-      API_URL: backend-nest
+  # client-machine:
+  #   stdin_open: true
+  #   tty: true
+  #   build:
+  #     context: ./client-machine
+  #     dockerfile: dockerfile
+  #   ports:
+  #     - "3002:3000"
+  #   volumes:
+  #     - /app/node_modules
+  #     - ./client-machine:/app
+  #   depends_on:
+  #     - backend-nest
+  #   environment:
+  #     API_URL: backend-nest
 
 volumes:
   vending-machine:

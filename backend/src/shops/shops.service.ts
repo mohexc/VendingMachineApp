@@ -29,9 +29,9 @@ export class ShopsService {
 
   async findOneAndInventories(id: number) {
     await this.findOne(id)
-    const shopInventory = await this.shopRepository.find({
+    const shopInventory = await this.shopRepository.findOne({
       where: { id },
-      relations: ["inventories",]
+      relations: ["inventories", 'inventories.product'],
     })
     return shopInventory
   }

@@ -14,6 +14,9 @@ export class Alert {
     @Column()
     description: string;
 
+    @Column({ default: false })
+    isReaded: boolean;
+
     @CreateDateColumn()
     created_at: Date;
 

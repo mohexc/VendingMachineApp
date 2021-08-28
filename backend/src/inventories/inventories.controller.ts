@@ -23,6 +23,10 @@ export class InventoriesController {
   findOne(@Param('id') id: string) {
     return this.inventoriesService.findOne(+id);
   }
+  @Get('/shop/:id')
+  findAllByShopId(@Param('id') id: string) {
+    return this.inventoriesService.findAllByShopId(+id);
+  }
 
   @Patch(':id/increase-qyt')
   increaseQyt(@Param('id') id: string, @Body() qytDto: QytDto) {

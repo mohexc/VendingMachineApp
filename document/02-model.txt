@@ -38,4 +38,5 @@ OrderItem
 Alert
     title
     description
+    isReaded
     shop: ManyToOne

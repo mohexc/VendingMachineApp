@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ApiTags } from '@nestjs/swagger';
 import { Inventory } from '../inventories/entities/inventory.entity';
 import { AlertService } from './alert.service';
-import { UpdateAlertDto } from './dto/update-alert.dto';
+import { UpdateAlertDto, UpdateAlertNoReadDto } from './dto/update-alert.dto';
 
 @ApiTags('Alerts')
 @Controller('alert')
@@ -13,11 +13,20 @@ export class AlertController {
   create(@Body() createAlertDto: Inventory) {
     return this.alertService.create(createAlertDto);
   }
+  @Post()
+  updateIsReaded(@Body() updateAlertNoReadDto: UpdateAlertNoReadDto) {
+    return this.alertService.updateIsReaded(updateAlertNoReadDto);
+  }
 
   @Get()
   findAll() {
     return this.alertService.findAll();
   }
+  @Get('/noread')
+  findAllNoRead() {
+    return this.alertService.findAllNoRead();
+  }
+
 
   @Get(':id')
   findOne(@Param('id') id: string) {

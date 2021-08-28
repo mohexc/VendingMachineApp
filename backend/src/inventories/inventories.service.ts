@@ -37,6 +37,16 @@ export class InventoriesService {
     })
   }
 
+  async findAllByShopId(id: number) {
+    return await this.inventoryRepository.find({
+      where: { shop: { id } },
+      relations: ['product',],
+      order: {
+        id: 'ASC'
+      }
+    })
+  }
+
 
   async findOne(id: number) {
     const inventory = await this.inventoryRepository.findOne({
