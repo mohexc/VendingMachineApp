@@ -13,7 +13,7 @@ export class AlertController {
   create(@Body() createAlertDto: Inventory) {
     return this.alertService.create(createAlertDto);
   }
-  @Post()
+  @Post('/update-isread')
   updateIsReaded(@Body() updateAlertNoReadDto: UpdateAlertNoReadDto) {
     return this.alertService.updateIsReaded(updateAlertNoReadDto);
   }

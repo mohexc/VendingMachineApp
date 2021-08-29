@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { CreateAlertDto } from './dto/create-alert.dto';
 import { UpdateAlertDto, UpdateAlertNoReadDto } from './dto/update-alert.dto';
 import { Alert } from './entities/alert.entity';
@@ -57,14 +57,13 @@ export class AlertService {
   async updateIsReaded(updateAlertNoReadDto: UpdateAlertNoReadDto) {
     const getAlertIds = await this.alertRepository.find({
       where: {
-        id: updateAlertNoReadDto
+        id: In(updateAlertNoReadDto.ids)
       }
     })
-    const result = Promise.all(getAlertIds.map(async alert => {
+    const result = await Promise.all(getAlertIds.map(async (alert) => {
       alert.isReaded = true
       return await this.alertRepository.save(alert)
     }))
-
     return result
   }
 

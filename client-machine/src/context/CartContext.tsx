@@ -1,3 +1,4 @@
+import { notification } from "antd";
 import React, { FC, useContext, useState } from "react";
 import { CartItem, Inventory } from "../types";
 import { useAuthContext } from "./AuthContext";
@@ -66,6 +67,9 @@ const CartContext: FC = ({ children }) => {
     await httpRequests.post("orders", order);
     setCart([]);
     getInvetories(shopId);
+    notification.success({
+      message: "Check Out Success",
+    });
   };
   const clearCart = () => setCart([]);
   return (

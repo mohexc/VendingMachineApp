@@ -1,13 +1,43 @@
-import React, { FC, useContext, useEffect } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
+import { AlertInterface } from "../types";
+import { useAuthContext } from "./AuthContext";
 
-interface ContextInterface {}
+interface ContextInterface {
+  alertNotread: AlertInterface[] | undefined;
+  getAlertNotRead(): void;
+  updatedRead(ids): void;
+}
 
 const Context = React.createContext<ContextInterface | null>(null);
 
 const AlertContext: FC = ({ children }) => {
-  useEffect(() => {}, []);
+  const { httpRequests } = useAuthContext();
+  const [alertNotread, setAlertNotread] = useState<AlertInterface[] | undefined>();
+  useEffect(() => {
+    getAlertNotRead();
+    // eslint-disable-next-line
+  }, []);
 
-  return <Context.Provider value={{}}>{children}</Context.Provider>;
+  const getAlertNotRead = async () => {
+    const { data } = await httpRequests.get("alert/noread");
+    setAlertNotread(data);
+  };
+
+  const updatedRead = async (ids) => {
+    await httpRequests.post("alert/update-isread", { ids });
+  };
+
+  return (
+    <Context.Provider
+      value={{
+        alertNotread,
+        updatedRead,
+        getAlertNotRead,
+      }}
+    >
+      {children}
+    </Context.Provider>
+  );
 };
 
 export const useAlertContext = () => {

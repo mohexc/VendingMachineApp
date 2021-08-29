@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 import ProductsListPage from "./pages/ProductsListPage";
 import ContextStore from "./context";
 import LayoutApp from "./components/layout/LayoutApp";

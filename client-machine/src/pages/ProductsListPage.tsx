@@ -35,7 +35,7 @@ const ProductsListPage: FC = () => {
           <Row gutter={[16, 16]} style={{ marginTop: "0.5rem" }}>
             {inventories?.map((inventory) => (
               <Col xs={6}>
-                <Card style={{ height: 300, position: "relative" }}>
+                <Card hoverable style={{ height: 300, position: "relative" }}>
                   <p>
                     <b>{inventory.product.name}</b>
                   </p>

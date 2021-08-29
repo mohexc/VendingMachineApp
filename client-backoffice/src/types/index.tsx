@@ -76,3 +76,12 @@ export interface CreateModalRef {
 export interface ParamsInterface {
   id: string;
 }
+
+export interface AlertInterface {
+  title: string;
+  description: string;
+  isReaded: boolean;
+  id: number;
+  created_at: string;
+  updated_at: string;
+}

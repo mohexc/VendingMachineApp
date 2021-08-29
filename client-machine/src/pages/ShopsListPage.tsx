@@ -27,8 +27,9 @@ const ShopsListPage: FC = () => {
       <Row gutter={[16, 16]}>
         {shops?.map((shop) => (
           <Col key={JSON.stringify(shop)} lg={4}>
-            <Card onClick={() => history.push(`/shops/${shop.id}`)}>
+            <Card hoverable onClick={() => history.push(`/shops/${shop.id}`)}>
               <Typography.Title level={4}>{shop.name}</Typography.Title>
+              <p>Address: {shop.address}</p>
             </Card>
           </Col>
         ))}

@@ -34,10 +34,16 @@ const OrdersListPage: FC = () => {
       key: "total_price",
     },
     {
-      title: "Shop",
+      title: "Machine",
       dataIndex: "shop",
       key: "shop",
       render: (text) => <p>{text.name}</p>,
+    },
+    {
+      title: "Address",
+      dataIndex: "shop",
+      key: "shop",
+      render: (text) => <p>{text.address}</p>,
     },
     {
       title: "Create_At",

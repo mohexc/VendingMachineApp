@@ -34,6 +34,11 @@ const MachineListPage = () => {
       key: "address",
     },
     {
+      title: "Create_At",
+      dataIndex: "created_at",
+      key: "created_at",
+    },
+    {
       title: "Operation",
       key: "operation",
       dataIndex: "id",

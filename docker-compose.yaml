@@ -45,21 +45,21 @@ services:
     environment:
       API_URL: backend-nest
 
-  # client-machine:
-  #   stdin_open: true
-  #   tty: true
-  #   build:
-  #     context: ./client-machine
-  #     dockerfile: dockerfile
-  #   ports:
-  #     - "3002:3000"
-  #   volumes:
-  #     - /app/node_modules
-  #     - ./client-machine:/app
-  #   depends_on:
-  #     - backend-nest
-  #   environment:
-  #     API_URL: backend-nest
+  client-machine:
+    stdin_open: true
+    tty: true
+    build:
+      context: ./client-machine
+      dockerfile: dockerfile
+    ports:
+      - "3003:3000"
+    volumes:
+      - /app/node_modules
+      - ./client-machine:/app
+    depends_on:
+      - backend-nest
+    environment:
+      API_URL: backend-nest
 
 volumes:
   vending-machine:
