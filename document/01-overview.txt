@@ -1,28 +1,30 @@
-workflow
-    create shop
-    create product
-    create and assign inventory to shop
+1 install package
+    - cd backend, client-backoffice, client-machine
+    - yarn
 
-    shop
-        login
-        get shop, and include inventory, product
+2. start project
+    open docker application
+    command docker-compose up --build
 
-    cart -> order cut inventory
+3. PORT
+    backend run at port 30001
+    clent-backoffice runt at port 3002
+    clent-machine runt at port 3003
 
-    alert
-        {
-            shop: Shop
-            title: "inventory.qyt < 10",
-            description: "product",
-        }
+4. workflow
+    1. open client-backoffice on browser port 3002
+    2. create product
+    3. create machine
+    4. click view operation  machine created
+    5. create inventory than more 10
 
-
-order : {
-    shopId: 1
-    orderItems: [
-        {
-            inventoryId: 1,
-            qyt:1
-        }
-    ]
-}
+    6. open client-machine on borwser port 3003
+    7. select machine
+    8. slect product
+    9. checkout 
+    10 if product have qyt < 10 webBackoffice alert at alert page and notifiction
+    
+5. note
+web don't finish 
+researching and will adding socket.io for realtime notificion
+        
